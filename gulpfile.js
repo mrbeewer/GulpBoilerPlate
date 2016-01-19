@@ -2,11 +2,18 @@ var gulp = require('gulp');
 var browserify = require('browserify');
 var babelify = require('babelify');
 var source = require('vinyl-source-stream');
+var watch = require('gulp-watch');
 
 // gulp.task(nameOfTaske, callback);
 // gulp.task('default', function() {
 //   console.log("logging out");
 // });
+
+watch(['./source/*.js'], function() {
+  console.log("App has been modified; re-compiling.");
+  gulp.start('default');
+});
+
 
 gulp.task('default', function() {
   return browserify('./source/app.js')
